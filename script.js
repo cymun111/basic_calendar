@@ -42,14 +42,14 @@ const renderCalendar = () => {
     "December",
   ];
 
-  document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+  document.querySelector(".date h1").innerHTML = `${months[date.getMonth()]}  ${date.getFullYear()}`;
 
   document.querySelector(".date p").innerHTML = new Date().toDateString();
 
   let days = "";
 
   for (let x = firstDayIndex; x > 0; x--) {
-    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+    days += `<td class="prev-date col-md-2">${prevLastDay - x + 1}</td>`;
   }
 
   for (let i = 1; i <= lastDay; i++) {
@@ -57,16 +57,23 @@ const renderCalendar = () => {
       i === new Date().getDate() &&
       date.getMonth() === new Date().getMonth()
     ) {
-      days += `<div class="today">${i}</div>`;
+      days += `<td class="today col-md-2">${i}</td>`;
     } else {
-      days += `<div>${i}</div>`;
+      days += `<td class="col-md-2">${i}</td>`;
     }
   }
 
   for (let j = 1; j <= nextDays; j++) {
-    days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;
+    days += `<td class="next-date col-md-2">${j}</td>`;
+    // monthDays.innerHTML = days;
   }
+  for(let x = 1; x <= totalDays; x++){
+    for(let x = 1; x <= 7; x++){
+      `<tr></tr>`
+      monthDays.innerHTML = days;
+    }
+  }
+  console.log(days)
 };
 
 document.querySelector(".prev").addEventListener("click", () => {
